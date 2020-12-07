@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class PreLoginPage extends StatefulWidget {
 
@@ -11,29 +12,37 @@ class _PreLoginPageState extends State<PreLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Just Listened'),
-        centerTitle: true,
-      ),
-      body: Center(
+      backgroundColor:HexColor('#172957'),
+      body: Container(
+        alignment: Alignment.center,
         child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            // LOGO DO APP
+            Container(width: 300, height: 300, color: Colors.black,),
+            Column(
+              children: <Widget>[
+                Container(),
+                RaisedButton.icon(
+                  onPressed: (){},
+                  label: Text("Entrar com o Google", style: TextStyle(fontSize: 20)),
+                  icon: Icon(Icons.golf_course)
+                ),
+                RaisedButton.icon(
+                  onPressed: (){},
+                  label: Text("Entrar com o Google", style: TextStyle(fontSize: 20)),
+                  icon: Icon(Icons.golf_course)
+                ),
+                RaisedButton.icon(
+                  onPressed: (){},
+                  label: Text("Entrar com o Google", style: TextStyle(fontSize: 20)),
+                  icon: Icon(Icons.golf_course)
+                )
+              ],
             ),
-            Text(
-              'TESTE',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){print('ahah');},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+          ]
+        )
+      )
     );
   }
 }
