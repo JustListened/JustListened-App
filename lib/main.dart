@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
         LoginWithEmail().screenName: (context) => LoginWithEmail(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         pageTransitionsTheme: PageTransitionsTheme(
           builders: {

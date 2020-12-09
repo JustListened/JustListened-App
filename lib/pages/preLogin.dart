@@ -17,7 +17,6 @@ class _PreLoginPageState extends State<PreLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kLightGrey,
         body: SingleChildScrollView(
           child: Container(
               alignment: Alignment.center,
