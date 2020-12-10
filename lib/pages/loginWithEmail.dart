@@ -84,49 +84,21 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         children: [
-          TextFormField(
+          AppFormTextField(
             controller: _emailController,
-            cursorColor: kNeutralBlack,
-            decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: kMainPurple)),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: kMainPurple),
-              ),
-              focusColor: kMainPurple,
-              labelText: "Email",
-              labelStyle: TextStyle(color: kMainPurple),
-              icon: Icon(
-                Icons.email,
-                color: kMainPurple,
-              ),
-            ),
+            iconData: Icons.email,
+            labelText: "Email",
             keyboardType: TextInputType.emailAddress,
           ),
-          AppSpacer(
-            height: 16,
-          ),
-          TextFormField(
-            controller: _pwdController,
-            cursorColor: kNeutralBlack,
-            decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: kMainPurple)),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: kMainPurple),
-              ),
-              focusColor: kMainPurple,
-              labelText: "Senha",
-              labelStyle: TextStyle(color: kMainPurple),
-              icon: Icon(
-                Icons.email,
-                color: kMainPurple,
-              ),
-            ),
+          AppSpacer(height: 16),
+          AppFormTextField(
             obscureText: true,
             autocorrect: false,
             maxLength: 30,
-          ),
+            controller: _pwdController,
+            iconData: Icons.lock,
+            labelText: "Senha",
+          )
         ],
       ),
     );
