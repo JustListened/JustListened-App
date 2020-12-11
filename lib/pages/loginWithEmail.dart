@@ -12,6 +12,7 @@ class LoginWithEmail extends StatefulWidget {
 class _LoginWithEmailState extends State<LoginWithEmail> {
   TextEditingController _emailController;
   TextEditingController _pwdController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -80,26 +81,57 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   }
 
   Widget _getMainContent() {
+    bool _isValid = true;
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24),
-      child: Column(
-        children: [
-          AppFormTextField(
-            controller: _emailController,
-            iconData: Icons.email,
-            labelText: "Email",
-            keyboardType: TextInputType.emailAddress,
-          ),
-          AppSpacer(height: 16),
-          AppFormTextField(
-            obscureText: true,
-            autocorrect: false,
-            maxLength: 30,
-            controller: _pwdController,
-            iconData: Icons.lock,
-            labelText: "Senha",
-          )
-        ],
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            AppFormTextField(
+              controller: _emailController,
+              iconData: Icons.email,
+              labelText: "Email",
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                var emailRegex = RegExp(
+                    "^[a-zA-Z0-9.!#\$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\$");
+                if (value.isEmpty) {
+                  return 'Digite um email!';
+                } else if (!emailRegex.hasMatch(value)) {
+                  return 'Digite um email válido!';
+                }
+              },
+            ),
+            AppSpacer(height: 16),
+            AppFormTextField(
+              obscureText: true,
+              autocorrect: false,
+              maxLength: 30,
+              controller: _pwdController,
+              iconData: Icons.lock,
+              labelText: "Senha",
+              validator: (value) {
+                if(value.isEmpty){
+                  return "Digite a senha!";
+                }else if(value.length < 3){
+                  return "Senha invalida!";
+                }
+              },
+            ),
+            AppSpacer(height: 24),
+            AppButton(
+              label: "Entrar",
+              onPressed: () {
+                  _formKey.currentState.validate();
+              },
+            ),
+            AppSpacer(height: 16),
+            AppButton(
+              label: "Cadastrar-se",
+            ),
+          ],
+        ),
       ),
     );
   }

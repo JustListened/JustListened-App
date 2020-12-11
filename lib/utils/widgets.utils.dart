@@ -20,6 +20,7 @@ class AppFormTextField extends StatefulWidget {
   final bool obscureText;
   final bool autocorrect;
   final int maxLength;
+  final Function validator;
 
   AppFormTextField({
     this.controller,
@@ -29,6 +30,7 @@ class AppFormTextField extends StatefulWidget {
     this.autocorrect = true,
     this.maxLength,
     this.obscureText = false,
+    this.validator,
   });
 
   @override
@@ -59,6 +61,41 @@ class _AppFormTextFieldState extends State<AppFormTextField> {
       autocorrect: widget.autocorrect,
       maxLength: widget.maxLength,
       keyboardType: widget.keyboardType ?? TextInputType.text,
+      validator: widget.validator,
     );
   }
 }
+
+class AppButton extends StatefulWidget {
+
+  final String label;
+  final Function onPressed;
+  final bool enabled;
+
+  AppButton({
+    this.label,
+    this.onPressed,
+    this.enabled = true,
+  });
+
+  @override
+  _AppButtonState createState() => _AppButtonState();
+}
+
+class _AppButtonState extends State<AppButton> {
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme(
+      minWidth: 280,
+      child: RaisedButton(
+        padding: EdgeInsets.all(12),
+        onPressed: widget.enabled ? widget.onPressed ?? () {} : null,
+        child: Text(widget.label,
+            style: TextStyle(fontSize: 20, color: Colors.white)),
+        color: widget.enabled ? kMainPurple : kLightGrey,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+    );
+  }
+}
+
